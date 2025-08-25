@@ -1,0 +1,46 @@
+name: Deploy Python Flask App to EC2
+
+on:
+  push:
+    branches:
+      - main   # Runs when code is pushed to 'main'
+
+jobs:
+  deploy:
+    runs-on: amazon-linux
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Copy Python app to EC2
+        run: |
+          scp -o StrictHostKeyChecking=no -r "Task 3/task/" \
+          ${{ secrets.SSH_USERNAME }}@${{ secrets.EC2_PUBLIC_IP }}:/home/${{ secrets.SSH_USERNAME }}/app
+
+      - name: Deploy on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+            cd ~/app
+
+            # Create virtual environment if not exists
+            if [ ! -d "venv" ]; then
+              python3 -m venv venv
+            fi
+
+            # Activate venv and install requirements
+            source venv/bin/activate
+            pip install --upgrade pip
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+            # Kill old gunicorn if running
+            pkill -f gunicorn || true
+
+            # Start app with gunicorn (replace app:app with your flask entry point)
+            nohup venv/bin/gunicorn -b 0.0.0.0:80 app:app > gunicorn.log 2>&1 &
+          EOF
