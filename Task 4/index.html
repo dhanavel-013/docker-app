@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🚀 DevOps Challenge – Terraform + Ansible</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --accent: #4facfe;
+      --accent-2: #43e97b;
+      --text-light: #eaeaea;
+      --text-muted: #b5b5b5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title {
+      font-size: 2.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lead {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .kpis {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .pill:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .btnrow {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(79,172,254,0.5);
+    }
+    .btn.primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(79,172,254,0.7);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn.ghost:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: limegreen;
+      margin-right: 0.5rem;
+      box-shadow: 0 0 10px limegreen, 0 0 20px limegreen;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      margin-top: 2rem;
+      color: var(--text-muted);
+    }
+    footer span {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1 class="title">Hello from Terraform + Ansible 🚀</h1>
+    <p class="lead">This web app was provisioned with <strong>Terraform</strong> and configured by <strong>Ansible</strong>. Fully automated, agentless, and reproducible.</p>
+
+    <div class="kpis">
+      <div class="pill">☁️ AWS EC2: <strong>t3.micro</strong></div>
+      <div class="pill">🌎 HTTP: <strong>Port 80</strong></div>
+      <div class="pill">🔐 SSH: <strong>Key Pair</strong></div>
+      <div class="pill">🧩 NGINX: <strong>Running</strong></div>
+    </div>
+
+    <div class="kpis">
+      <div class="pill">🛠 Terraform</div>
+      <div class="pill">⚡ Ansible</div>
+      <div class="pill">🐧 Amazon Linux 2</div>
+    </div>
+
+    <div class="btnrow">
+      <a class="btn primary" href="http://<EC2_PUBLIC_IP>" target="_blank">Verify Deployment</a>
+      <a class="btn ghost" href="#">View Logs</a>
+    </div>
+
+    <div class="status"><span class="dot"></span> Deployment healthy</div>
+
+    <footer>
+      <span>© <script>document.write(new Date().getFullYear())</script> </span>
+    </footer>
+  </main>
+</body>
+</html>
